@@ -16,7 +16,7 @@ public class Main {
         FileHandler handler = new FileHandler();
 
         getOutput(handler.createFile(path));
-        getOutput(handler.writeToFile(Paths.get(path), content));
+        getOutput(handler.writeToFile(path, content));
         getOutput("CONTENT: " + handler.readFromFile(path));
     }
 

@@ -20,12 +20,12 @@ public class FileHandler {
         return "Created " + newFile;
     }
 
-    public String writeToFile(Path path, String content) {
+    public String writeToFile(String path, String content) {
         try {
-            if (Files.notExists(path)) {
+            if (Files.notExists(Path.of(path))) {
                 throw new NoSuchFileException("File not found");
             }
-            Files.writeString(path, content);
+            Files.writeString(Path.of(path), content);
         } catch (NoSuchFileException ex) {
             return ex.getMessage();
         } catch (IOException ex) {
