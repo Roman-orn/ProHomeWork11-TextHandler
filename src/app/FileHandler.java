@@ -12,7 +12,7 @@ public class FileHandler {
             Files.createFile(Path.of(path));
             System.out.println("Created " + path);
         } catch (FileAlreadyExistsException ex) {
-            System.out.println("File already exists!");
+            System.out.println("File already exists! Path: " + path);
             throw new FileProcessingException(ex);
         } catch (IOException ex) {
             System.out.println("Error creating a file by path: " + path);
