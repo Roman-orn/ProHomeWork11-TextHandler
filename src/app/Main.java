@@ -6,9 +6,9 @@ public class Main {
 
     static void main(String[] args) {
 
-        String fileName = "myFile";
+        String fileName = "myFile.txt";
         String content = "Super information.";
-        String path = BASE_PATH + fileName + ".txt";
+        String path = BASE_PATH + fileName;
 
         FileHandler handler = new FileHandler();
 
