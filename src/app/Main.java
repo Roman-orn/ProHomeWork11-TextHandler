@@ -14,20 +14,11 @@ public class Main {
 
         try {
             handler.createFile(path);
-        } catch (RuntimeException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        try {
             handler.writeToFile(path, content);
-        } catch (RuntimeException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        try {
             handler.readFromFile(path);
         } catch (RuntimeException ex) {
             System.out.println(ex.getMessage());
         }
+
     }
 }
