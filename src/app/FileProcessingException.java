@@ -2,7 +2,7 @@ package app;
 
 import java.io.IOException;
 
-public class FileProcessingException extends IOException {
+public class FileProcessingException extends RuntimeException {
 
     public FileProcessingException(String message) {
         super(message);
