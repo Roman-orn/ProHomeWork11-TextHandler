@@ -3,44 +3,39 @@ package app;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 
 public class FileHandler {
 
-    public String createFile(String path) {
-        Path newFile;
+    public void createFile(String path) {
         try {
-            newFile = Files.createFile(Path.of(path));
+            Files.createFile(Path.of(path));
+            System.out.println("Created " + path);
         } catch (FileAlreadyExistsException ex) {
-            return "File already exists!";
+            System.out.println("File already exists!");
+            throw new FileProcessingException(ex);
         } catch (IOException ex) {
-            return "Something wrong " + ex.getMessage();
+            System.out.println("Error creating a file by path: " + path);
+            throw new FileProcessingException(ex);
         }
-        return "Created " + newFile;
     }
 
-    public String writeToFile(String path, String content) {
+    public void writeToFile(String path, String content) {
         try {
-            if (Files.notExists(Path.of(path))) {
-                throw new NoSuchFileException("File not found");
-            }
             Files.writeString(Path.of(path), content);
-        } catch (NoSuchFileException ex) {
-            return ex.getMessage();
+            System.out.println("Recorded in " + path);
         } catch (IOException ex) {
-            return "Something wrong " + ex.getMessage();
+            System.out.println("Error writing a file by path: " + path);
+            throw new FileProcessingException(ex);
         }
-        return "Recorded in " + path;
     }
 
-    public String readFromFile(String path) {
+    public void readFromFile(String path) {
         try {
-            return Files.readString(Path.of(path));
-        } catch (NoSuchFileException ex) {
-            return "File not found";
+            System.out.println("CONTENT: " + Files.readString(Path.of(path)));
         } catch (IOException ex) {
-            return "Something wrong " + ex.getMessage();
+            System.out.println("Error reading a file by path: " + path);
+            throw new FileProcessingException(ex);
         }
     }
 }

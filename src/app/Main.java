@@ -1,8 +1,5 @@
 package app;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public class Main {
 
     private static final String BASE_PATH = "files/";
@@ -15,12 +12,22 @@ public class Main {
 
         FileHandler handler = new FileHandler();
 
-        getOutput(handler.createFile(path));
-        getOutput(handler.writeToFile(path, content));
-        getOutput("CONTENT: " + handler.readFromFile(path));
-    }
+        try {
+            handler.createFile(path);
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
+        }
 
-    static void getOutput(String output) {
-        System.out.println(output);
+        try {
+            handler.writeToFile(path, content);
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        try {
+            handler.readFromFile(path);
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
